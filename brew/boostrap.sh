@@ -32,12 +32,16 @@ brew install direnv
 brew install yarn
 brew install postgresql@14
 
-# Node versions manager
+# Node version manager
 brew install nvm
 
-# Ruby versions manager
+# Ruby version manager
 brew install chruby
 brew install ruby-install
+
+# Flutter version manager
+brew tap leoafarias/fvm
+brew install fvm
 
 # Java versions manager
 # using sdkman
@@ -64,6 +68,9 @@ brew install --cask iterm2
 brew install --cask visual-studio-code
 brew install --cask fork
 brew install --cask dbeaver-community
+brew install --cask android-studio
+brew install --cask android-ndk
+brew install --cask android-sdk
 
 brew install --cask spotify
 brew install --cask steam

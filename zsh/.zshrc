@@ -17,7 +17,7 @@ ZSH_THEME="agnoster"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "cc" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -134,10 +134,20 @@ eval "$(direnv hook zsh)"
 # Postgresql
 # export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
 
+# FVM
+#
+# Flutter
+# Point global flutter to FVM global version
+export PATH=$PATH:~/fvm/default/bin
+
 # Chruby
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 # optional autoswitch feature
-# source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+
+# Android
+export ANDROID_HOME="~/Library/Android/sdk"
+export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
 
 # Puppeteer's issue with Chromium not available for arm64
 # https://stackoverflow.com/questions/65928783/puppeteer5-5-0-install-node-install-js-on-m1
