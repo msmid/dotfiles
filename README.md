@@ -10,6 +10,10 @@ https://github.com/holman/dotfiles
 
 - [ ] setup postgres, start&stop service
 
+## GIT
+
+Aliases: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
+
 ## Troubleshooting
 
 ### `ionic cap run ios` not showing target devices

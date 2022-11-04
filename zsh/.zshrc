@@ -109,6 +109,17 @@ source $ZSH/oh-my-zsh.sh
 # bindkey "^[[A" up-line-or-beginning-search # Up
 # bindkey "^[[B" down-line-or-beginning-search # Down
 
+DOTFILES=$(pwd -P)
+
+source_if_exists () {
+    if test -r "$1"; then
+        source "$1"
+    fi
+}
+
+source_if_exists $DOTFILES/git/aliases.zsh
+source_if_exists $DOTFILES/zsh/aliases.zsh
+
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
