@@ -102,12 +102,12 @@ source $ZSH/oh-my-zsh.sh
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
+# autoload -U up-line-or-beginning-search
+# autoload -U down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+# bindkey "^[[A" up-line-or-beginning-search # Up
+# bindkey "^[[B" down-line-or-beginning-search # Down
 
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -119,3 +119,21 @@ export NVM_DIR="$HOME/.nvm"
 
 # Direnv
 eval "$(direnv hook zsh)"
+
+# Postgresql
+# export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
+
+# Chruby
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+# optional autoswitch feature
+# source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+
+# Puppeteer's issue with Chromium not available for arm64
+# https://stackoverflow.com/questions/65928783/puppeteer5-5-0-install-node-install-js-on-m1
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
+
+# Sdkman
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

@@ -28,9 +28,33 @@ brew install gnu-sed --with-default-names
 brew install bash
 brew install bash-completion2
 
-brew install nvm
 brew install direnv
 brew install yarn
+brew install postgresql@14
+
+# Node versions manager
+brew install nvm
+
+# Ruby versions manager
+brew install chruby
+brew install ruby-install
+
+# Java versions manager
+# using sdkman
+
+# Required by flink-backend project
+brew install libxml2
+brew install libxslt
+brew install libffi
+brew install cocoapods
+brew install imagemagick
+
+# Java
+brew install tomcat@9
+
+# Web
+
+
 
 #
 # Casks
@@ -40,3 +64,8 @@ brew install --cask iterm2
 brew install --cask visual-studio-code
 brew install --cask fork
 brew install --cask dbeaver-community
+
+brew install --cask spotify
+brew install --cask steam
+brew install --cask discord
+brew install --cask bitwarden
