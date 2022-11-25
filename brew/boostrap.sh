@@ -58,7 +58,8 @@ brew install tomcat@9
 
 # Web
 
-
+# Docker
+brew install docker-compose
 
 #
 # Casks
@@ -71,6 +72,7 @@ brew install --cask dbeaver-community
 brew install --cask android-studio
 brew install --cask android-ndk
 brew install --cask android-sdk
+brew install --cask docker
 
 brew install --cask spotify
 brew install --cask steam
