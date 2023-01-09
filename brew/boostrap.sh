@@ -74,7 +74,9 @@ brew install --cask android-ndk
 brew install --cask android-sdk
 brew install --cask docker
 
+brew install --cask bitwarden
+brew install --cask discord
+
 brew install --cask spotify
 brew install --cask steam
-brew install --cask discord
-brew install --cask bitwarden
+brew install --cask epic-games
