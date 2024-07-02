@@ -138,16 +138,18 @@ eval "$(direnv hook zsh)"
 #
 # Flutter
 # Point global flutter to FVM global version
-export PATH=$PATH:~/fvm/default/bin
+# export PATH="$PATH:$HOME/fvm/default/bin"
 
-# Chruby
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-# optional autoswitch feature
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+# Rbenv
+eval "$(rbenv init - zsh)"
 
 # Android
 export ANDROID_HOME="~/Library/Android/sdk"
 export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Puppeteer's issue with Chromium not available for arm64
 # https://stackoverflow.com/questions/65928783/puppeteer5-5-0-install-node-install-js-on-m1
@@ -158,3 +160,18 @@ export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Chrome
+#
+export CHROME_EXECUTABLE="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+# Python
+#
+PATH=$(pyenv root)/shims:$PATH
+# fnm
+FNM_PATH="/Users/martin/Library/Application Support/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/Users/martin/Library/Application Support/fnm:$PATH"
+  eval "`fnm env`"
+fi
+eval "$(fnm env --use-on-cd)"

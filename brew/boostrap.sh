@@ -27,6 +27,8 @@ brew install gnu-sed --with-default-names
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2
+brew install wget
+brew install wireguard-tools
 
 brew install direnv
 brew install yarn
@@ -36,12 +38,15 @@ brew install postgresql@14
 brew install nvm
 
 # Ruby version manager
-brew install chruby
-brew install ruby-install
+brew install rbenv
+brew install ruby-build
 
 # Flutter version manager
 brew tap leoafarias/fvm
 brew install fvm
+
+# Python version manager
+brew install pyenv
 
 # Java versions manager
 # using sdkman
@@ -61,6 +66,10 @@ brew install tomcat@9
 # Docker
 brew install docker-compose
 
+# Tools
+brew install p7zip
+brew install gsed
+
 #
 # Casks
 #
@@ -73,10 +82,16 @@ brew install --cask android-studio
 brew install --cask android-ndk
 brew install --cask android-sdk
 brew install --cask docker
+brew install --cask chromedriver
+brew install --cask google-cloud-sdk
+brew install --cask eloston-chromium
 
 brew install --cask bitwarden
 brew install --cask discord
+brew install --cask google-drive
+brew install --cask sketch
 
 brew install --cask spotify
 brew install --cask steam
 brew install --cask epic-games
+brew install --cask battle-net
