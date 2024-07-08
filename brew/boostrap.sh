@@ -29,6 +29,7 @@ brew install bash
 brew install bash-completion2
 brew install wget
 brew install wireguard-tools
+brew install git-lfs
 
 brew install direnv
 brew install yarn
