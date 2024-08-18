@@ -79,6 +79,7 @@ brew install --cask iterm2
 brew install --cask visual-studio-code
 brew install --cask fork
 brew install --cask dbeaver-community
+brew install --cask alfred
 brew install --cask android-studio
 brew install --cask android-ndk
 brew install --cask android-sdk
