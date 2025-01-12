@@ -70,7 +70,10 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+    git
+    you-should-use
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -168,10 +171,17 @@ export CHROME_EXECUTABLE="/Applications/Google Chrome.app/Contents/MacOS/Google 
 # Python
 #
 PATH=$(pyenv root)/shims:$PATH
-# fnm
-FNM_PATH="/Users/martin/Library/Application Support/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/Users/martin/Library/Application Support/fnm:$PATH"
-  eval "`fnm env`"
-fi
-eval "$(fnm env --use-on-cd)"
+
+# # FNM
+# FNM_PATH="/Users/martin/Library/Application Support/fnm"
+# if [ -d "$FNM_PATH" ]; then
+#   export PATH="/Users/martin/Library/Application Support/fnm:$PATH"
+#   eval "`fnm env`"
+# fi
+# eval "$(fnm env --use-on-cd)"
+
+# Created by `pipx` on 2024-10-17 10:22:45
+export PATH="$PATH:/Users/martin/.local/bin"
+
+# Yarn
+export PATH="$PATH:$(yarn global bin)"

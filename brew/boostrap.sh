@@ -29,7 +29,8 @@ brew install bash
 brew install bash-completion2
 brew install wget
 brew install wireguard-tools
-brew install git-lfs
+# NOTE! git-lfs is installed manually from binaries because `brew install`` has clash with exec paths of git
+# brew install git-lfs
 
 brew install direnv
 brew install yarn
@@ -63,6 +64,8 @@ brew install imagemagick
 brew install tomcat@9
 
 # Web
+brew install php
+brew install composer
 
 # Docker
 brew install docker-compose
@@ -79,7 +82,6 @@ brew install --cask iterm2
 brew install --cask visual-studio-code
 brew install --cask fork
 brew install --cask dbeaver-community
-brew install --cask alfred
 brew install --cask android-studio
 brew install --cask android-ndk
 brew install --cask android-sdk
@@ -87,6 +89,8 @@ brew install --cask docker
 brew install --cask chromedriver
 brew install --cask google-cloud-sdk
 brew install --cask eloston-chromium
+brew install --cask mongodb-compass
+brew install --cask raycast
 
 brew install --cask bitwarden
 brew install --cask discord
