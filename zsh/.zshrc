@@ -187,3 +187,7 @@ export PATH="$PATH:/Users/martin/.local/bin"
 
 # Yarn
 export PATH="$PATH:$(yarn global bin)"
+
+# ruby image processing errors
+export DISABLE_SPRING=true
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
