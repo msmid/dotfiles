@@ -91,6 +91,7 @@ brew install --cask google-cloud-sdk
 brew install --cask eloston-chromium
 brew install --cask mongodb-compass
 brew install --cask raycast
+brew install --cask cyberduck
 
 brew install --cask bitwarden
 brew install --cask discord
