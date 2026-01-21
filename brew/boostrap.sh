@@ -73,6 +73,7 @@ brew install docker-compose
 # Tools
 brew install p7zip
 brew install gsed
+brew install openconnect
 
 #
 # Casks

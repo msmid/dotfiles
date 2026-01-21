@@ -1,6 +1,6 @@
 [user]
 	name = Martin Smid
-	email = smm@panter.ch
+	email = martin.smid12@gmail.com
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
