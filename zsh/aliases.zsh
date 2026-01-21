@@ -1,6 +1,6 @@
 # Add custom aliases
 
-# alias testz='echo custom zsh aliases works'
+alias testz='echo custom zsh aliases works'
 
 alias edge_chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
   --user-data-dir=\"/Users/cetin\" \
