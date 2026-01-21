@@ -35,6 +35,7 @@ brew install wireguard-tools
 brew install direnv
 brew install yarn
 brew install postgresql@14
+brew install midnight-commander
 
 # Node version manager
 brew install nvm
@@ -93,6 +94,7 @@ brew install --cask eloston-chromium
 brew install --cask mongodb-compass
 brew install --cask raycast
 brew install --cask cyberduck
+brew install --cask commander-one
 
 brew install --cask bitwarden
 brew install --cask discord
