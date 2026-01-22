@@ -104,6 +104,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias c='clear'
 alias pn='pnpm'
+alias edge_chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+  --user-data-dir=\"/Users/cetin\" \
+  --profile-directory=\"chrome-profile4-clone\" \
+  --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0\""
+
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
@@ -122,8 +127,9 @@ source_if_exists () {
     fi
 }
 
-source_if_exists $DOTFILES/git/aliases.zsh
-source_if_exists $DOTFILES/zsh/aliases.zsh
+# This is not working
+# source_if_exists $DOTFILES/git/aliases.zsh
+# source_if_exists $DOTFILES/zsh/aliases.zsh
 
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
