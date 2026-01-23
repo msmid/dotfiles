@@ -76,6 +76,7 @@ brew install p7zip
 brew install gsed
 brew install openconnect
 brew install vpn-slice
+brew install mdless
 
 #
 # Casks
