@@ -77,6 +77,7 @@ brew install gsed
 brew install openconnect
 brew install vpn-slice
 brew install mdless
+brew install tmux
 
 #
 # Casks
