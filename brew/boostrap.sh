@@ -78,6 +78,7 @@ brew install openconnect
 brew install vpn-slice
 brew install mdless
 brew install tmux
+brew install font-hack-nerd-font
 
 #
 # Casks
