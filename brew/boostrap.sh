@@ -12,6 +12,11 @@ BREW_PREFIX=$(brew --prefix)
 #
 # Install command-line tools using Homebrew.
 #
+brew install font-hack-nerd-font
+brew install tmux
+# Install a modern version of Bash.
+brew install bash
+brew install bash-completion2
 
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -24,18 +29,12 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
-# Install a modern version of Bash.
-brew install bash
-brew install bash-completion2
-brew install wget
-brew install wireguard-tools
 # NOTE! git-lfs is installed manually from binaries because `brew install`` has clash with exec paths of git
 # brew install git-lfs
 
 brew install direnv
 brew install yarn
 brew install postgresql@14
-brew install midnight-commander
 
 # Node version manager
 brew install nvm
@@ -54,12 +53,11 @@ brew install pyenv
 # Java versions manager
 # using sdkman
 
-# Required by flink-backend project
+# Ruby
+brew install imagemagick
 brew install libxml2
 brew install libxslt
 brew install libffi
-brew install cocoapods
-brew install imagemagick
 
 # Java
 brew install tomcat@9
@@ -68,22 +66,29 @@ brew install tomcat@9
 brew install php
 brew install composer
 
-# Docker
-brew install docker-compose
+# Native Development
+brew install cocoapods
 
 # Tools
+brew install docker-compose
 brew install p7zip
-brew install gsed
+# CLI-based non-interactive downloader
+brew install wget
+# CLI Markdown renderer
+brew install mdless
+# Famous command line file manager
+brew install midnight-commander
+
+
+# VPN
 brew install openconnect
 brew install vpn-slice
-brew install mdless
-brew install tmux
-brew install font-hack-nerd-font
+brew install wireguard-tools
 
 #
 # Casks
 #
-
+brew install --cask raycast
 brew install --cask iterm2
 brew install --cask visual-studio-code
 brew install --cask fork
@@ -96,14 +101,12 @@ brew install --cask chromedriver
 brew install --cask google-cloud-sdk
 brew install --cask eloston-chromium
 brew install --cask mongodb-compass
-brew install --cask raycast
 brew install --cask cyberduck
 brew install --cask commander-one
 
 brew install --cask bitwarden
 brew install --cask discord
 brew install --cask google-drive
-brew install --cask sketch
 
 brew install --cask spotify
 brew install --cask steam
