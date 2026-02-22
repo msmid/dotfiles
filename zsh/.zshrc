@@ -102,14 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias c='clear'
-alias pn='pnpm'
-alias edge_chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
-  --user-data-dir=\"/Users/cetin\" \
-  --profile-directory=\"chrome-profile4-clone\" \
-  --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0\""
-alias cetinvpn='sh ~/dev/cetin/scripts/start-cetin-vpn.sh'
-
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
@@ -120,7 +112,6 @@ alias cetinvpn='sh ~/dev/cetin/scripts/start-cetin-vpn.sh'
 # bindkey "^[[A" up-line-or-beginning-search # Up
 # bindkey "^[[B" down-line-or-beginning-search # Down
 
-# DOTFILES=$(pwd -P)
 DOTFILES="$(dirname "$(dirname "$(readlink -f "${(%):-%N}")")")"
 
 source_if_exists () {
@@ -129,9 +120,8 @@ source_if_exists () {
     fi
 }
 
-# This is not working
-# source_if_exists $DOTFILES/git/aliases.zsh
-# source_if_exists $DOTFILES/zsh/aliases.zsh
+source_if_exists "$DOTFILES/git/aliases.zsh"
+source_if_exists "$DOTFILES/zsh/aliases.zsh"
 
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"

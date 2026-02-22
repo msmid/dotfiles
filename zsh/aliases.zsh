@@ -1,6 +1,19 @@
 # Add custom aliases
 
-alias testz='echo custom zsh aliases works'
+# Clear visible screen
+alias cl='clear'
+
+# Clear visible screen and scrollback buffer
+alias cb='clear && printf "\e[3J"'
+
+# Ain't nobody got time for that
+alias pn='pnpm'
+
+# Ain't nobody got time for that
+alias y='yarn'
+
+# start Cetin VPN
+alias cetinvpn='sh ~/dev/cetin/scripts/start-cetin-vpn.sh'
 
 alias edge_chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
   --user-data-dir=\"/Users/cetin\" \

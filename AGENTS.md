@@ -138,6 +138,3 @@ When adding a new tool:
 4. If Homebrew install is needed, add `brew install <package>` to `brew/bootstrap.sh`.
 5. If shell initialization is needed, add it to `zsh/.zshrc` (respect ordering constraints).
 
-### Known Issues
-
-- Alias sourcing in `.zshrc` (lines 131-133) is commented out with note "This is not working".
