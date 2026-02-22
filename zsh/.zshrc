@@ -123,6 +123,13 @@ source_if_exists () {
 source_if_exists "$DOTFILES/git/aliases.zsh"
 source_if_exists "$DOTFILES/zsh/aliases.zsh"
 
+#
+# Dotfiles CLI
+#
+dotfiles () {
+  bash "$DOTFILES/scripts/dotfiles.sh" "$@"
+}
+
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 

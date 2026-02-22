@@ -16,7 +16,6 @@ languages -- pure shell scripts and config files.
 ```
 dotfiles/
 ├── setup.sh                     # Main installer (symlinks *.prop files)
-├── version-managers-cleanup.sh  # Utility: clean unused rbenv/pyenv versions
 ├── brew/
 │   ├── bootstrap.sh             # Homebrew package manifest
 │   └── install.sh               # Homebrew installer
@@ -32,6 +31,9 @@ dotfiles/
 │   └── configuration.sh         # macOS defaults (957 lines)
 ├── nvm/
 │   └── bootstrap.sh             # Creates ~/.nvm directory
+├── scripts/
+│   ├── dotfiles.sh              # CLI dispatcher (run via `dotfiles` shell function)
+│   └── version-managers-cleanup.sh  # Clean unused rbenv/pyenv versions
 ├── sdkman/
 │   └── install.sh               # SDKMAN installer
 ├── tmux/
@@ -52,12 +54,27 @@ There is no build system, test runner, or linter configured.
 ./brew/install.sh                        # Install Homebrew itself
 ./brew/bootstrap.sh                      # Install all packages, casks, and fonts
 ./macos/configuration.sh                 # Configure macOS defaults
-./version-managers-cleanup.sh ruby -n    # Dry-run cleanup of unused rbenv versions
-./version-managers-cleanup.sh python     # Actually uninstall unused pyenv versions
+dotfiles help                            # List available dotfiles CLI commands
+dotfiles version-managers-cleanup ruby -n  # Dry-run cleanup of unused rbenv versions
+dotfiles version-managers-cleanup python   # Actually uninstall unused pyenv versions
 ```
 
 No test runner, linter, or formatter is configured. If adding shell linting,
 use `shellcheck` (one directive already exists in `setup.sh:25`).
+
+## Dotfiles CLI
+
+The `dotfiles` shell function (defined in `zsh/.zshrc`) dispatches to scripts in
+the `scripts/` directory. Usage:
+
+```sh
+dotfiles <command> [args...]   # Run a script
+dotfiles help                  # List available commands
+```
+
+The dispatcher (`scripts/dotfiles.sh`) auto-discovers scripts by scanning
+`scripts/*.sh` (excluding itself). Each script's description is pulled from the
+comment on line 2 (the line after the shebang).
 
 ## Symlinks Mechanism
 
@@ -77,7 +94,7 @@ $DOTFILES/zsh/.zshrc=$HOME/.zshrc
 - **Shebang:** Use `#!/bin/sh` for POSIX-compatible scripts, `#!/usr/bin/env bash`
   for scripts requiring Bash features (arrays, `[[ ]]`, `set -euo pipefail`).
 - **Strict mode:** Use `set -euo pipefail` in utility scripts
-  (see `version-managers-cleanup.sh`). Not enforced in interactive/setup scripts.
+  (see `scripts/version-managers-cleanup.sh`). Not enforced in interactive/setup scripts.
 - **Quoting:** Quote variables in most contexts (`"$var"`), especially in paths and
   conditionals. Unquoted expansion is acceptable in `PATH` assignments.
 - **Indentation:** 2 spaces. No tabs.
@@ -109,7 +126,7 @@ $DOTFILES/zsh/.zshrc=$HOME/.zshrc
 ### Naming Conventions
 
 - **Directories:** Lowercase, named after the tool they configure (`git/`, `zsh/`, `tmux/`).
-- **Scripts:** `snake-case.sh` for standalone utilities, `bootstrap.sh` / `install.sh`
+- **Scripts:** `kebab-case.sh` for standalone utilities, `bootstrap.sh` / `install.sh`
   for setup scripts within tool directories.
 - **Symlink files:** Always named `symlinks.prop`.
 - **Aliases files:** Always named `aliases.zsh`.
@@ -137,4 +154,16 @@ When adding a new tool:
 3. Add a `symlinks.prop` file mapping source to destination.
 4. If Homebrew install is needed, add `brew install <package>` to `brew/bootstrap.sh`.
 5. If shell initialization is needed, add it to `zsh/.zshrc` (respect ordering constraints).
+
+### Adding New Scripts
+
+When adding a new utility script to the `dotfiles` CLI:
+
+1. Create `scripts/<script-name>.sh` (use `kebab-case` naming).
+2. Line 1 must be a shebang (`#!/usr/bin/env bash`).
+3. Line 2 must be a `# comment` describing what the script does — this is shown
+   by `dotfiles help`.
+4. Add `set -euo pipefail` for strict error handling.
+5. Make the script executable (`chmod +x`).
+6. The script is automatically discovered — no registration needed.
 
