@@ -79,6 +79,9 @@ brew install mdless
 # Famous command line file manager
 brew install midnight-commander
 
+# AI tools
+brew install anomalyco/tap/opencode
+
 
 # VPN
 brew install openconnect
