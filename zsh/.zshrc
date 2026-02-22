@@ -120,7 +120,8 @@ alias cetinvpn='sh ~/dev/cetin/scripts/start-cetin-vpn.sh'
 # bindkey "^[[A" up-line-or-beginning-search # Up
 # bindkey "^[[B" down-line-or-beginning-search # Down
 
-DOTFILES=$(pwd -P)
+# DOTFILES=$(pwd -P)
+DOTFILES="$(dirname "$(dirname "$(readlink -f "${(%):-%N}")")")"
 
 source_if_exists () {
     if test -r "$1"; then

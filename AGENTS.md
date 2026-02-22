@@ -18,7 +18,7 @@ dotfiles/
 ├── setup.sh                     # Main installer (symlinks *.prop files)
 ├── version-managers-cleanup.sh  # Utility: clean unused rbenv/pyenv versions
 ├── brew/
-│   ├── boostrap.sh              # Homebrew package manifest (note: typo in filename)
+│   ├── bootstrap.sh             # Homebrew package manifest
 │   └── install.sh               # Homebrew installer
 ├── git/
 │   ├── .gitconfig               # Global git config
@@ -50,7 +50,7 @@ There is no build system, test runner, or linter configured.
 ```sh
 ./setup.sh                               # Create symlinks (interactive conflict resolution)
 ./brew/install.sh                        # Install Homebrew itself
-./brew/boostrap.sh                       # Install all packages, casks, and fonts
+./brew/bootstrap.sh                      # Install all packages, casks, and fonts
 ./macos/configuration.sh                 # Configure macOS defaults
 ./version-managers-cleanup.sh ruby -n    # Dry-run cleanup of unused rbenv versions
 ./version-managers-cleanup.sh python     # Actually uninstall unused pyenv versions
@@ -135,14 +135,9 @@ When adding a new tool:
 1. Create a directory named after the tool (e.g., `neovim/`).
 2. Place the config file in that directory (e.g., `neovim/init.lua`).
 3. Add a `symlinks.prop` file mapping source to destination.
-4. If Homebrew install is needed, add `brew install <package>` to `brew/boostrap.sh`.
+4. If Homebrew install is needed, add `brew install <package>` to `brew/bootstrap.sh`.
 5. If shell initialization is needed, add it to `zsh/.zshrc` (respect ordering constraints).
 
 ### Known Issues
 
-- `brew/boostrap.sh` has a typo in the filename ("boostrap" not "bootstrap") -- do not rename
-  without updating any references.
-- The `$DOTFILES` variable in `.zshrc` (line 123) uses `$(pwd -P)` which resolves to
-  the current working directory at shell startup, not necessarily the dotfiles directory.
 - Alias sourcing in `.zshrc` (lines 131-133) is commented out with note "This is not working".
-- `brew/install.sh` has a logic issue in the if/then block.
