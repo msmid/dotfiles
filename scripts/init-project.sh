@@ -22,7 +22,7 @@ Creates:
       ├── notes/
       │   └── dev.md
       └── scripts/
-          └── init-tmux.sh
+          └── start.sh
 EOF
 }
 
@@ -69,6 +69,9 @@ cat > "$PROJECT_PATH/.dev/project.json" <<EOF
 {
   "version": "1",
   "session": "$PROJECT_NAME",
+  "cursor": {
+    "path": "$PROJECT_PATH/git"
+  },
   "windows": [
     { "name": "code", "path": "$PROJECT_PATH/git" },
     { "name": "notes", "path": "$PROJECT_PATH/.dev/notes" },
@@ -78,23 +81,23 @@ cat > "$PROJECT_PATH/.dev/project.json" <<EOF
 EOF
 
 #
-# Create init-tmux.sh
+# Create start.sh
 #
-cat > "$PROJECT_PATH/.dev/scripts/init-tmux.sh" <<'SCRIPT'
+cat > "$PROJECT_PATH/.dev/scripts/start.sh" <<'SCRIPT'
 #!/usr/bin/env bash
 # Start tmux session for this project.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-dotfiles init-tmux "$SCRIPT_DIR/../project.json"
+dotfiles start "$SCRIPT_DIR/../project.json"
 SCRIPT
 
-chmod +x "$PROJECT_PATH/.dev/scripts/init-tmux.sh"
+chmod +x "$PROJECT_PATH/.dev/scripts/start.sh"
 
 echo ""
 echo "Project created successfully."
 echo ""
 echo "Start tmux session:"
-echo "  $PROJECT_PATH/.dev/scripts/init-tmux.sh"
+echo "  $PROJECT_PATH/.dev/scripts/start.sh"
 echo "  # or"
-echo "  dotfiles init-tmux $PROJECT_PATH/.dev/project.json"
+echo "  dotfiles start $PROJECT_PATH/.dev/project.json"

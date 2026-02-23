@@ -7,12 +7,15 @@ usage () {
 Start a tmux session from a project.json configuration file.
 
 Usage:
-  dotfiles init-tmux <path-to-project.json>
+  dotfiles start <path-to-project.json>
 
 project.json format:
   {
     "version": "1",
     "session": "my-app",
+    "cursor": {
+      "path": "/absolute/path/to/dir"
+    },
     "windows": [
       {
         "name": "code",
@@ -25,6 +28,12 @@ project.json format:
       { "name": "notes", "path": "/absolute/path/to/dir" }
     ]
   }
+
+Top-level fields:
+  session   tmux session name
+  cursor    Open Cursor editor (optional)
+    path    Directory to open in Cursor
+  windows   Array of tmux windows
 
 Window fields:
   name      Window name
@@ -65,6 +74,11 @@ session = config["session"]
 windows = config["windows"]
 
 print(f"SESSION={shlex.quote(session)}")
+
+cursor = config.get("cursor", {})
+cursor_path = cursor.get("path", "") if isinstance(cursor, dict) else ""
+print(f"CURSOR_PATH={shlex.quote(cursor_path)}")
+
 print(f"WINDOW_COUNT={len(windows)}")
 
 for i, w in enumerate(windows):
@@ -171,6 +185,13 @@ done
 # Select first window
 #
 tmux select-window -t "$SESSION:1"
+
+#
+# Open Cursor
+#
+if [[ -n "$CURSOR_PATH" ]]; then
+  cursor "$CURSOR_PATH"
+fi
 
 #
 # Attach or switch to session

@@ -13,7 +13,7 @@ alias pn='pnpm'
 alias y='yarn'
 
 # start Cetin VPN
-alias cetinvpn='sh ~/dev/cetin/scripts/start-cetin-vpn.sh'
+alias cetinvpn='sh ~/dev/cetin/.dev/scripts/start-cetin-vpn.sh'
 
 alias edge_chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
   --user-data-dir=\"/Users/cetin\" \
