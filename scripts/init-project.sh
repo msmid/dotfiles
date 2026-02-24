@@ -9,10 +9,13 @@ usage () {
 Create a new project folder with a standard structure.
 
 Usage:
-  dotfiles init-project <absolute-path>
+  dotfiles init-project [absolute-path]
+
+If no path is provided, the current directory is used.
 
 Example:
   dotfiles init-project /Users/martin/dev/projects/my-app
+  dotfiles init-project
 
 Creates:
   <path>/
@@ -26,24 +29,29 @@ Creates:
 EOF
 }
 
-if [[ $# -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+if [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
   usage
   exit 0
 fi
 
-PROJECT_PATH="$1"
+PROJECT_PATH="${1:-$(pwd)}"
 
 if [[ "$PROJECT_PATH" != /* ]]; then
   echo "Error: path must be absolute (got: $PROJECT_PATH)"
   exit 1
 fi
 
-if [[ -d "$PROJECT_PATH" ]]; then
-  echo "Error: directory already exists: $PROJECT_PATH"
-  exit 1
-fi
-
 PROJECT_NAME="$(basename "$PROJECT_PATH")"
+
+write_file () {
+  local file="$1"
+  local label="$2"
+  if [[ -f "$file" ]]; then
+    echo "  $label exists... skipped"
+    return 1
+  fi
+  return 0
+}
 
 echo "Creating project: $PROJECT_NAME"
 echo "  Path: $PROJECT_PATH"
@@ -58,14 +66,17 @@ mkdir -p "$PROJECT_PATH/.dev/scripts"
 #
 # Create dev.md
 #
-cat > "$PROJECT_PATH/.dev/notes/dev.md" <<EOF
+if write_file "$PROJECT_PATH/.dev/notes/dev.md" "dev.md"; then
+  cat > "$PROJECT_PATH/.dev/notes/dev.md" <<EOF
 # $PROJECT_PATH
 EOF
+fi
 
 #
 # Create project.json
 #
-cat > "$PROJECT_PATH/.dev/project.json" <<EOF
+if write_file "$PROJECT_PATH/.dev/project.json" "project.json"; then
+  cat > "$PROJECT_PATH/.dev/project.json" <<EOF
 {
   "version": "1",
   "session": "$PROJECT_NAME",
@@ -79,11 +90,13 @@ cat > "$PROJECT_PATH/.dev/project.json" <<EOF
   ]
 }
 EOF
+fi
 
 #
 # Create start.sh
 #
-cat > "$PROJECT_PATH/.dev/scripts/start.sh" <<'SCRIPT'
+if write_file "$PROJECT_PATH/.dev/scripts/start.sh" "start.sh"; then
+  cat > "$PROJECT_PATH/.dev/scripts/start.sh" <<'SCRIPT'
 #!/usr/bin/env bash
 # Start tmux session for this project.
 set -euo pipefail
@@ -92,7 +105,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 dotfiles start "$SCRIPT_DIR/../project.json"
 SCRIPT
 
-chmod +x "$PROJECT_PATH/.dev/scripts/start.sh"
+  chmod +x "$PROJECT_PATH/.dev/scripts/start.sh"
+fi
 
 echo ""
 echo "Project created successfully."
