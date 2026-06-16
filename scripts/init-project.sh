@@ -21,7 +21,7 @@ Creates:
   <path>/
   ├── git/
   └── .dev/
-      ├── project.json
+      ├── dotdev.json
       ├── notes/
       │   └── dev.md
       └── scripts/
@@ -73,10 +73,10 @@ EOF
 fi
 
 #
-# Create project.json
+# Create dotdev.json
 #
-if write_file "$PROJECT_PATH/.dev/project.json" "project.json"; then
-  cat > "$PROJECT_PATH/.dev/project.json" <<EOF
+if write_file "$PROJECT_PATH/.dev/dotdev.json" "dotdev.json"; then
+  cat > "$PROJECT_PATH/.dev/dotdev.json" <<EOF
 {
   "version": "1",
   "session": "$PROJECT_NAME",
@@ -102,7 +102,7 @@ if write_file "$PROJECT_PATH/.dev/scripts/start.sh" "start.sh"; then
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-dotfiles start "$SCRIPT_DIR/../project.json"
+dotfiles start "$SCRIPT_DIR/../dotdev.json"
 SCRIPT
 
   chmod +x "$PROJECT_PATH/.dev/scripts/start.sh"
@@ -114,4 +114,4 @@ echo ""
 echo "Start tmux session:"
 echo "  $PROJECT_PATH/.dev/scripts/start.sh"
 echo "  # or"
-echo "  dotfiles start $PROJECT_PATH/.dev/project.json"
+echo "  dotfiles start $PROJECT_PATH/.dev/dotdev.json"

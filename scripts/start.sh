@@ -4,12 +4,12 @@ set -euo pipefail
 
 usage () {
   cat <<'EOF'
-Start a tmux session from a project.json configuration file.
+Start a tmux session from a dotdev.json configuration file.
 
 Usage:
   dotfiles start <path-to-project.json>
 
-project.json format:
+dotdev.json format:
   {
     "version": "1",
     "session": "my-app",
