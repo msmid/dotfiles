@@ -82,6 +82,8 @@ brew install midnight-commander
 # AI tools
 brew install anomalyco/tap/opencode
 
+# GIT
+brew install glab
 
 # VPN
 brew install openconnect
