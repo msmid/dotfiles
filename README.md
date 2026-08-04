@@ -6,10 +6,6 @@ https://github.com/andrew8088/dotfiles
 https://github.com/mathiasbynens/dotfiles
 https://github.com/holman/dotfiles
 
-## TODO
-
-- [ ] setup postgres, start&stop service
-
 ## GIT
 
 Aliases: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
