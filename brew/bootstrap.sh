@@ -117,3 +117,5 @@ brew install --cask spotify
 brew install --cask steam
 brew install --cask epic-games
 brew install --cask battle-net
+brew install --cask netnewswire
+
