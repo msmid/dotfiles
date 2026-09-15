@@ -39,6 +39,9 @@ dotfiles/
 ├── tmux/
 │   ├── .tmux.conf               # tmux config (catppuccin theme, TPM plugins)
 │   └── symlinks.prop            # Symlink: .tmux.conf -> ~/.tmux.conf
+├── zed/
+│   ├── settings.json            # Zed editor settings
+│   └── symlinks.prop            # Symlink: settings.json -> ~/.config/zed/settings.json
 └── zsh/
     ├── .zshrc                   # Zsh config (oh-my-zsh, PATH, tool init)
     ├── aliases.zsh              # Custom aliases
