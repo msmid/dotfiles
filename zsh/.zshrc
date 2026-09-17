@@ -24,7 +24,7 @@ CASE_SENSITIVE="true"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -135,8 +135,21 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if [[ -r "$NVM_DIR/alias/default" ]]; then
+  _nvm_alias="$(<"$NVM_DIR/alias/default")"
+  while [[ -r "$NVM_DIR/alias/$_nvm_alias" ]]; do
+    _nvm_alias="$(<"$NVM_DIR/alias/$_nvm_alias")"
+  done
+  _nvm_node="$(command ls -d "$NVM_DIR/versions/node/v${_nvm_alias}."* 2>/dev/null | sort -V | tail -1)"
+  [[ -n "$_nvm_node" ]] && PATH="$_nvm_node/bin:$PATH"
+  unset _nvm_alias _nvm_node
+fi
+nvm () {
+  unset -f nvm
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+  nvm "$@"
+}
 
 # Direnv
 eval "$(direnv hook zsh)"
@@ -151,7 +164,12 @@ eval "$(direnv hook zsh)"
 # export PATH="$PATH:$HOME/fvm/default/bin"
 
 # Rbenv
-eval "$(rbenv init - zsh)"
+export PATH="$HOME/.rbenv/shims:$PATH"
+rbenv () {
+  unset -f rbenv
+  eval "$(command rbenv init - zsh)"
+  rbenv "$@"
+}
 
 # Android
 export ANDROID_HOME="~/Library/Android/sdk"
@@ -164,12 +182,17 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Puppeteer's issue with Chromium not available for arm64
 # https://stackoverflow.com/questions/65928783/puppeteer5-5-0-install-node-install-js-on-m1
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-export PUPPETEER_EXECUTABLE_PATH=`which chromium`
+export PUPPETEER_EXECUTABLE_PATH="/opt/homebrew/bin/chromium"
 
 # Sdkman
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="$SDKMAN_DIR/candidates/java/current/bin:$PATH"
+sdk () {
+  unset -f sdk
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  sdk "$@"
+}
 
 # Chrome
 #
@@ -177,7 +200,7 @@ export CHROME_EXECUTABLE="/Applications/Google Chrome.app/Contents/MacOS/Google 
 
 # Python
 #
-PATH=$(pyenv root)/shims:$PATH
+export PATH="$HOME/.pyenv/shims:$PATH"
 
 # # FNM
 # FNM_PATH="/Users/martin/Library/Application Support/fnm"
@@ -189,9 +212,6 @@ PATH=$(pyenv root)/shims:$PATH
 
 # Created by `pipx` on 2024-10-17 10:22:45
 export PATH="$PATH:/Users/martin/.local/bin"
-
-# Yarn
-export PATH="$PATH:$(yarn global bin)"
 
 # ruby image processing errors
 export DISABLE_SPRING=true
