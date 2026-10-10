@@ -15,10 +15,13 @@ languages -- pure shell scripts and config files.
 
 ```
 dotfiles/
-├── setup.sh                     # Main installer (symlinks *.prop files)
+├── setup.sh                     # Main installer (symlinks, then curl installers)
 ├── brew/
 │   ├── bootstrap.sh             # Homebrew package manifest
 │   └── install.sh               # Homebrew installer
+├── curls/
+│   ├── bootstrap.sh             # Runs curl-style installers from installs.txt
+│   └── installs.txt             # One installer command per line
 ├── git/
 │   ├── .gitconfig               # Global git config
 │   ├── aliases.zsh              # Git aliases (delegates to oh-my-zsh plugin)
@@ -53,9 +56,10 @@ dotfiles/
 There is no build system, test runner, or linter configured.
 
 ```sh
-./setup.sh                               # Create symlinks (interactive conflict resolution)
+./setup.sh                               # Create symlinks, then run curl installers
 ./brew/install.sh                        # Install Homebrew itself
 ./brew/bootstrap.sh                      # Install all packages, casks, and fonts
+./curls/bootstrap.sh                     # Run curl-style installers only
 ./macos/configuration.sh                 # Configure macOS defaults
 dotfiles help                            # List available dotfiles CLI commands
 dotfiles version-managers-cleanup ruby -n  # Dry-run cleanup of unused rbenv versions
@@ -156,6 +160,8 @@ When adding a new tool:
 2. Place the config file in that directory (e.g., `neovim/init.lua`).
 3. Add a `symlinks.prop` file mapping source to destination.
 4. If Homebrew install is needed, add `brew install <package>` to `brew/bootstrap.sh`.
+   For a curl installer (e.g. `curl -fsSL https://bun.sh/install | bash`), add the
+   command to `curls/installs.txt` instead.
 5. If shell initialization is needed, add it to `zsh/.zshrc` (respect ordering constraints).
 
 ### Adding New Scripts

@@ -1,0 +1,6 @@
+# One installer command per line.
+# Blank lines and full-line comments are ignored.
+# Installers must be non-interactive. Re-running the list re-runs every command.
+
+# bun
+curl -fsSL https://bun.sh/install | bash

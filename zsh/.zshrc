@@ -216,3 +216,10 @@ export PATH="$PATH:/Users/martin/.local/bin"
 # ruby image processing errors
 export DISABLE_SPRING=true
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# bun completions
+[ -s "/Users/martin/.bun/_bun" ] && source "/Users/martin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

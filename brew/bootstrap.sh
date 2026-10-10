@@ -74,8 +74,6 @@ brew install docker-compose
 brew install p7zip
 # CLI-based non-interactive downloader
 brew install wget
-# CLI Markdown renderer
-brew install mdless
 # Famous command line file manager
 brew install midnight-commander
 
@@ -118,4 +116,3 @@ brew install --cask steam
 brew install --cask epic-games
 brew install --cask battle-net
 brew install --cask netnewswire
-

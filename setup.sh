@@ -126,6 +126,11 @@ fail () {
 
 install_dotfiles
 
+info '[curls] installing'
+if ! bash "$DOTFILES/curls/bootstrap.sh"; then
+  fail '[curls] install failed'
+fi
+
 echo ''
 echo ''
 success '[dotfiles] All installed!'
