@@ -54,7 +54,6 @@ brew install pyenv
 # using sdkman
 
 # Ruby
-brew install imagemagick
 brew install libxml2
 brew install libxslt
 brew install libffi
@@ -72,6 +71,8 @@ brew install cocoapods
 # Tools
 brew install docker-compose
 brew install p7zip
+brew install imagemagick
+brew install ffmpeg
 # CLI-based non-interactive downloader
 brew install wget
 # Famous command line file manager
